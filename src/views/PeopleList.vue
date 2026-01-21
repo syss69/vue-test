@@ -11,7 +11,7 @@ const peopleWithYears = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4 border">
     <h1 class="text-xl font-bold text-gray-700">People</h1>
 
     <div class="flex flex-col gap-3">

@@ -3,6 +3,8 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { store } from '@/store'
 
+import AgeInput from '@/components/AgeInput.vue'
+
 const route = useRoute()
 
 const person = computed(() => {
@@ -10,16 +12,27 @@ const person = computed(() => {
   return store.people.find((p) => p.id === id)
 })
 
-function updateAge(value: string) {
-  if (person.value) {
-    person.value.ageInHours = Number(value) || 0
+// function updateAge(value: string) {
+//   if (person.value) {
+//     person.value.ageInHours = Number(value) || 0
+//   }
+// }
+const ageInHours = computed({
+  get() {
+    return person.value?.ageInHours ?? 0
+  },
+  set(value: number) {
+    if (!person.value) return
+    person.value.ageInHours = value
   }
-}
+})
 </script>
 
 <template>
-  <div v-if="person" class="flex flex-col gap-4">
-    <router-link to="/" class="text-violet-600 hover:underline text-sm">&larr; Back</router-link>
+  <div v-if="person" class="flex flex-col justify-between border">
+    <router-link to="/" class="text-violet-600 hover:underline text-lg">
+      &larr; Back
+    </router-link>
 
     <div class="flex items-center gap-3">
       <img
@@ -27,27 +40,22 @@ function updateAge(value: string) {
         :alt="person.name"
         class="w-14 h-14 rounded-full border-2 border-violet-500 object-cover"
       />
-      <div>
-        <label for="hours-input" class="block text-sm font-bold tracking-wide text-gray-700">
-          {{ person.name.toUpperCase() }} IS
-        </label>
-        <div class="flex items-center gap-2">
-          <input
-            id="hours-input"
-            type="text"
-            :value="person.ageInHours"
-            @input="updateAge(($event.target as HTMLInputElement).value)"
-            class="border border-gray-300 rounded px-2 py-1 text-lg outline-none"
-            placeholder="0"
-          />
-          <span class="text-gray-600">hours old</span>
-        </div>
-      </div>
+
+      <AgeInput
+        :name="person.name"
+        input-id="hours-input"
+        v-model="ageInHours"
+      />
+    </div>
+    <div class="flex justify-center">
+      Save changes
     </div>
   </div>
 
   <div v-else>
     <p class="text-gray-600">Person not found</p>
-    <router-link to="/" class="text-violet-600 hover:underline text-sm">Back to list</router-link>
+    <router-link to="/" class="text-violet-600 hover:underline text-sm">
+      Back to list
+    </router-link>
   </div>
 </template>
