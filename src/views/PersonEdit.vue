@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { store } from '@/store'
 
 import AgeInput from '@/components/AgeInput.vue'
+import PageHeader from '@/components/PageHeader.vue'
 
 const route = useRoute()
 
@@ -30,9 +31,7 @@ const ageInHours = computed({
 
 <template>
   <div v-if="person" class="flex flex-col justify-between border">
-    <router-link to="/" class="text-violet-600 hover:underline text-lg">
-      &larr; Back
-    </router-link>
+    <PageHeader/>
 
     <div class="flex items-center gap-3">
       <img

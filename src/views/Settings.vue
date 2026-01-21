@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { store } from '@/store'
 
+import PageHeader from '@/components/PageHeader.vue';
+
 function updateMinimumAge(value: string) {
   store.minimumAgeInMonths = Number(value) || 0
 }
@@ -8,7 +10,7 @@ function updateMinimumAge(value: string) {
 
 <template>
   <div class="flex flex-col gap-4">
-    <router-link to="/" class="text-violet-600 hover:underline text-sm">&larr; Back</router-link>
+    <PageHeader/>
 
     <h1 class="text-xl font-bold text-gray-700">Settings</h1>
 
