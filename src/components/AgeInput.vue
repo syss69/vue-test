@@ -14,20 +14,31 @@ const emit = defineEmits<{
 
 const error = ref<string | null>(null);
 
-function onInput(event: Event) {
-  const inputValue = (event.target as HTMLInputElement).value
+const localInputValue = ref<string>(props.modelValue.toString())
 
-  if(!/^\d*$/.test(inputValue)){
-    error.value = 'You can write only integers'
-    return
-  }
-  const inputNumber = Number(inputValue)
-  if(inputNumber < Math.floor(props.minAge * 720)){
-    error.value = 'The entered age is below the minimum'
-    return
-  }
-  error.value = null
-  emit('update:modelValue', Number(inputValue))
+watch(
+    () => props.modelValue,
+    (newValue) => {
+        localInputValue.value = newValue.toString()
+    }
+)
+
+function onInput(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value
+
+    localInputValue.value = inputValue
+
+    if(!/^\d*$/.test(inputValue)){
+        error.value = 'You can write only integers'
+        return
+    }
+    const inputNumber = Number(inputValue)
+    if(inputNumber < Math.floor(props.minAge * 720)){
+        error.value = 'The entered age is below the minimum'
+        return
+    }
+    error.value = null
+    emit('update:modelValue', Number(inputValue))
 
 }
 </script>
@@ -45,7 +56,7 @@ function onInput(event: Event) {
       <input
         :id="inputId"
         type="text"
-        :value="modelValue"
+        :value="localInputValue"
         @input="onInput"
         class="border border-gray-300 rounded px-2 py-1 text-lg outline-none"
         placeholder="0"
