@@ -11,7 +11,7 @@ const peopleWithYears = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 border">
+  <div class="flex flex-col gap-4 w-full">
     <h1 class="text-xl font-bold text-gray-700">People list</h1>
 
     <div class="flex flex-col gap-3">
@@ -33,7 +33,7 @@ const peopleWithYears = computed(() => {
       </router-link>
     </div>
 
-    <router-link to="/settings" class="text-violet-600 hover:underline text-sm">
+    <router-link to="/settings" class="text-violet-600 hover:underline text-sm flex justify-center">
       Settings
     </router-link>
   </div>

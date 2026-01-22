@@ -9,10 +9,10 @@ function updateMinimumAge(value: string) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4 w-full">
     <PageHeader/>
-
-    <h1 class="text-xl font-bold text-gray-700">Settings</h1>
+    <div class="flex flex-col items-center gap-4 w-full">
+      <h1 class="text-xl font-bold text-gray-700">Settings</h1>
 
     <div>
       <label for="min-age-input" class="block text-sm font-bold tracking-wide text-gray-700">
@@ -29,6 +29,7 @@ function updateMinimumAge(value: string) {
         />
         <span class="text-gray-600">months</span>
       </div>
+    </div>
     </div>
   </div>
 </template>

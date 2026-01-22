@@ -41,15 +41,14 @@ i'm blocked here cause tailwind won't accept dynamic ${width}px, so i choose arr
 
 function format(value: number | string): string {
     const digits = value.toString().replace(/\D/g, '')
-    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') //adding spaces to have a 3digits separated output
 }
 
 function parseToDigit(value: string): number{
-    return Number(value.replace(/\D/g, '')) 
+    return Number(value.replace(/\D/g, '')) //now deleting spaces to save value
 }
 
 function onInput(event: Event) {
-    console.log(widthClass.value)
     const inputValue = (event.target as HTMLInputElement).value
 
     localInputValue.value = inputValue

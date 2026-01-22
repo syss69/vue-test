@@ -29,10 +29,10 @@ const ageInHours = computed({
 </script>
 
 <template>
-  <div v-if="person" class="flex flex-col justify-between border">
+  <div v-if="person" class="flex flex-col justify-between w-full">
     <PageHeader/>
 
-    <div class="flex items-center gap-3">
+    <div class="flex justify-center gap-3">
       <img
         src="/img.png"
         :alt="person.name"
@@ -46,14 +46,11 @@ const ageInHours = computed({
         :min-age="minAge"
       />
     </div>
-    <div class="flex justify-center">
-      <button class="rounded-md bg-violet-600 hover:underline text-lg">
-        Save changes
-      </button>
+    <div>
     </div>
   </div>
 
-  <div v-else>
+  <div v-else class="flex flex-col justify-center">
     <p class="text-gray-600">Person not found</p>
     <router-link to="/" class="text-violet-600 hover:underline text-sm">
       Back to list
