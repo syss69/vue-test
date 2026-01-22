@@ -11,10 +11,10 @@ const peopleWithYears = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 w-full">
-    <h1 class="text-xl font-bold text-gray-700">People list</h1>
+  <div class="flex flex-col gap-4 w-full items-center gap-5">
+    <h1 class="text-xl font-bold text-gray-700 w-full">People list</h1>
 
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3 lg:w-1/4 min-w-fit">
       <router-link
         v-for="person in peopleWithYears"
         :key="person.id"
