@@ -14,31 +14,40 @@ const emit = defineEmits<{
 
 const error = ref<string | null>(null);
 
-const localInputValue = ref<string>(props.modelValue.toString())
+const localInputValue = ref<string>(format(props.modelValue))
 
 watch(
     () => props.modelValue,
     (newValue) => {
-        localInputValue.value = newValue.toString()
+        localInputValue.value = format(newValue)
     }
 )
+
+function format(value: number | string): string {
+    const digits = value.toString().replace(/\D/g, '')
+    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+}
+
+function parseToDigit(value: string): number{
+    return Number(value.replace(/\D/g, '')) 
+}
 
 function onInput(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value
 
     localInputValue.value = inputValue
 
-    if(!/^\d*$/.test(inputValue)){
-        error.value = 'You can write only integers'
-        return
-    }
-    const inputNumber = Number(inputValue)
+    const inputNumber = parseToDigit(inputValue)
+    localInputValue.value = format(inputNumber)
+
+    //earlier was check if input have a text and if yes shows error, but i decided to just ignore not numbers
+
     if(inputNumber < Math.floor(props.minAge * 720)){
         error.value = 'The entered age is below the minimum'
         return
     }
     error.value = null
-    emit('update:modelValue', Number(inputValue))
+    emit('update:modelValue', inputNumber)
 
 }
 </script>
@@ -47,7 +56,7 @@ function onInput(event: Event) {
   <div>
     <label
       :for="inputId"
-      class="block text-sm font-bold tracking-wide text-gray-700"
+      class="block text-sm font-bold tracking-wide text-violet-700"
     >
       {{ name.toUpperCase() }} IS
     </label>
