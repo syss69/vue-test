@@ -13,6 +13,9 @@ const person = computed(() => {
   return store.people.find((p) => p.id === id)
 })
 
+const minAge = computed(() => {
+  return Number(store.minimumAgeInMonths)
+})
 // function updateAge(value: string) {
 //   if (person.value) {
 //     person.value.ageInHours = Number(value) || 0
@@ -44,10 +47,13 @@ const ageInHours = computed({
         :name="person.name"
         input-id="hours-input"
         v-model="ageInHours"
+        :min-age="minAge"
       />
     </div>
     <div class="flex justify-center">
-      Save changes
+      <button class="rounded-md bg-violet-600 hover:underline text-lg">
+        Save changes
+      </button>
     </div>
   </div>
 

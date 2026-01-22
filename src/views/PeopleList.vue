@@ -12,7 +12,7 @@ const peopleWithYears = computed(() => {
 
 <template>
   <div class="flex flex-col gap-4 border">
-    <h1 class="text-xl font-bold text-gray-700">People</h1>
+    <h1 class="text-xl font-bold text-gray-700">People list</h1>
 
     <div class="flex flex-col gap-3">
       <router-link

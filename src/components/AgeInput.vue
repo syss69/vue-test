@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps<{
   name: string
   modelValue: number
   inputId: string
+  minAge: number
 }>()
 
 const emit = defineEmits<{
@@ -20,12 +21,15 @@ function onInput(event: Event) {
     error.value = 'You can write only integers'
     return
   }
+  const inputNumber = Number(inputValue)
+  if(inputNumber < Math.floor(props.minAge * 720)){
+    error.value = 'The entered age is below the minimum'
+    return
+  }
   error.value = null
   emit('update:modelValue', Number(inputValue))
 
 }
-
-
 </script>
 
 <template>
