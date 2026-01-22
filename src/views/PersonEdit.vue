@@ -29,14 +29,18 @@ const ageInHours = computed({
 </script>
 
 <template>
-  <div v-if="person" class="flex flex-col justify-between w-full">
+  <div v-if="person" class="flex flex-col items-center gap-4 w-full">
     <PageHeader/>
-
-    <div class="flex justify-center gap-3">
+    <h1 class="text-xl font-bold text-indigo-950">Change {{person.name}}'s age</h1>
+    <div 
+      tabindex="0" 
+      class="group flex justify-center gap-3">
       <img
         src="/img.png"
         :alt="person.name"
-        class="w-14 h-14 rounded-full border-2 border-violet-500 object-cover"
+        class="w-14 h-14 rounded-full object-cover
+              group-focus-within:border-2
+              group-focus-within:border-violet-500"
       />
 
       <AgeInput
@@ -45,8 +49,6 @@ const ageInHours = computed({
         v-model="ageInHours"
         :min-age="minAge"
       />
-    </div>
-    <div>
     </div>
   </div>
 

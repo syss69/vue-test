@@ -72,7 +72,8 @@ function onInput(event: Event) {
   <div>
     <label
       :for="inputId"
-      class="block text-sm font-bold tracking-wide text-violet-700"
+      class="block text-sm font-bold tracking-wide text-indigo-950
+      group-focus-within:text-violet-700"
     >
       {{ name.toUpperCase() }} IS
     </label>
@@ -84,12 +85,12 @@ function onInput(event: Event) {
         :value="localInputValue"
         @input="onInput"
         :class="[
-            'border border-gray-300 rounded px-2 py-1 text-lg outline-none',
+            'border border-gray-300 rounded px-2 py-1 text-lg outline-none text-gray-300 group-focus-within:text-indigo-900 group-focus-within:border-violet-700',
             widthClass
         ]"
         placeholder="0"
       />
-      <span class="text-gray-600">hours old</span>
+      <span class="text-indigo-950">hours old</span>
     </div>
     <p v-if="error" class="text-red-500 text-sm mt-1">
       {{ error }}
