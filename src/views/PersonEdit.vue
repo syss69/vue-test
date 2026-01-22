@@ -16,11 +16,7 @@ const person = computed(() => {
 const minAge = computed(() => {
   return Number(store.minimumAgeInMonths)
 })
-// function updateAge(value: string) {
-//   if (person.value) {
-//     person.value.ageInHours = Number(value) || 0
-//   }
-// }
+
 const ageInHours = computed({
   get() {
     return person.value?.ageInHours ?? 0
