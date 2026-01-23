@@ -6,6 +6,10 @@ export interface Person {
   ageInHours: number
 }
 
+const hrsInMonth = 720;
+
+const hrsInYear = 8760;
+
 export const usePeopleStore = defineStore('people', {
     state: () => ({
         people: [
@@ -17,17 +21,17 @@ export const usePeopleStore = defineStore('people', {
     }),
 
     getters: {
-        minimumAgeInHours: (state) => state.minimumAgeInMonths * 720,
+        minimumAgeInHours: (state) => state.minimumAgeInMonths * hrsInMonth,
 
         getUserById: (state) => {
-            return (id: number) =>
+            return (id: number): Person | undefined =>
                 state.people.find(p => p.id === id)
         },
 
         peopleWithYears: (state) => {
-            return state.people.map((person) => ({
+            return state.people.map((person)=> ({
                 ...person,
-                ageInYears: Math.floor(person.ageInHours / 8760)
+                ageInYears: Math.floor(person.ageInHours / hrsInYear)
             }))
         }
     },
