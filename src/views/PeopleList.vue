@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-// import { store } from '@/store'
 import { usePeopleStore } from '@/store/people'
 
 const store = usePeopleStore()

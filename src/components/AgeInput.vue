@@ -20,7 +20,7 @@ const valueProxy = computed({
     set: (val: number) => {
         const minHours = props.minAge * 720
         if (val < minHours){
-            error.value = 'the enteerd age is bbellow the minimum'
+            error.value = 'The entered age is bellow the minimum'
             return
         }
         error.value =null

@@ -52,7 +52,6 @@ function onInput(event: Event) {
     const numeric = parseToDigit(raw)
 
     displayValue.value = format(numeric)
-    console.log(numeric, displayValue.value)
     emit('update:modelValue', numeric)
 }
 
