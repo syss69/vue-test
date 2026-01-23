@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { store } from '@/store'
+// import { store } from '@/store'
 import { computed } from 'vue';
+import { usePeopleStore } from '@/store/people';
 
 import PageHeader from '@/components/PageHeader.vue';
 import NumericInput from '@/components/NumericInput.vue';
 
+const store = usePeopleStore()
+
 const minAgeProxy = computed({
   get: () => store.minimumAgeInMonths,
   set: (val: number) => {
-    store.minimumAgeInMonths = val
+    store.setMinimumAge(val)
   }
 })
 </script>
