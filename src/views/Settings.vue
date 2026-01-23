@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { store } from '@/store'
+import { computed } from 'vue';
 
 import PageHeader from '@/components/PageHeader.vue';
+import NumericInput from '@/components/NumericInput.vue';
 
-function updateMinimumAge(value: string) {
-  store.minimumAgeInMonths = Number(value) || 0
-}
+const minAgeProxy = computed({
+  get: () => store.minimumAgeInMonths,
+  set: (val: number) => {
+    store.minimumAgeInMonths = val
+  }
+})
 </script>
 
 <template>
@@ -19,14 +24,7 @@ function updateMinimumAge(value: string) {
         MINIMUM AGE
       </label>
       <div class="flex items-center gap-2">
-        <input
-          id="min-age-input"
-          type="text"
-          :value="store.minimumAgeInMonths"
-          @input="updateMinimumAge(($event.target as HTMLInputElement).value)"
-          class="border border-gray-300 rounded px-2 py-1 text-lg outline-none"
-          placeholder="0"
-        />
+        <NumericInput inputId="min-age-input" v-model="minAgeProxy"/>
         <span class="text-gray-600">months</span>
       </div>
     </div>
