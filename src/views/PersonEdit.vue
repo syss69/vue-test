@@ -1,53 +1,63 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { store } from '@/store'
+// import { store } from '@/store'
+import { usePeopleStore } from '@/store/people'
 
+import AgeInput from '@/components/AgeInput.vue'
+import PageHeader from '@/components/PageHeader.vue'
+
+const store = usePeopleStore()
 const route = useRoute()
 
 const person = computed(() => {
-  const id = Number(route.params.id)
-  return store.people.find((p) => p.id === id)
+    const userId = Number(route.params.id)
+    return store.getUserById(userId)
 })
 
-function updateAge(value: string) {
-  if (person.value) {
-    person.value.ageInHours = Number(value) || 0
+const minAge = computed(() => {
+  return Number(store.minimumAgeInMonths)
+})
+
+const ageInHours = computed({
+  get() {
+    return person.value?.ageInHours ?? 0
+  },
+  set(value: number) {
+    if (!person.value) return
+    person.value.ageInHours = value
   }
-}
+})
 </script>
 
 <template>
-  <div v-if="person" class="flex flex-col gap-4">
-    <router-link to="/" class="text-violet-600 hover:underline text-sm">&larr; Back</router-link>
-
-    <div class="flex items-center gap-3">
+  <div v-if="person" class="flex flex-col items-center gap-4 w-full">
+    <PageHeader/>
+    <h1 class="text-xl text-indigo-900">Change {{person.name}}'s age</h1>
+    <div 
+      tabindex="0" 
+      class="group flex justify-center gap-3">
       <img
-        src="/img.png"
+        src="/photo.png"
         :alt="person.name"
-        class="w-14 h-14 rounded-full border-2 border-violet-500 object-cover"
+        class="w-14 h-14 rounded-full object-cover
+              group-focus-within:border-2
+              group-focus-within:border-violet-500"
       />
-      <div>
-        <label for="hours-input" class="block text-sm font-bold tracking-wide text-gray-700">
-          {{ person.name.toUpperCase() }} IS
-        </label>
-        <div class="flex items-center gap-2">
-          <input
-            id="hours-input"
-            type="text"
-            :value="person.ageInHours"
-            @input="updateAge(($event.target as HTMLInputElement).value)"
-            class="border border-gray-300 rounded px-2 py-1 text-lg outline-none"
-            placeholder="0"
-          />
-          <span class="text-gray-600">hours old</span>
-        </div>
-      </div>
+
+      <AgeInput
+        :name="person.name"
+        input-id="hours-input"
+        v-model="ageInHours"
+        :min-age="minAge"
+      />
     </div>
   </div>
 
-  <div v-else>
+  <div v-else class="flex flex-col justify-center">
     <p class="text-gray-600">Person not found</p>
-    <router-link to="/" class="text-violet-600 hover:underline text-sm">Back to list</router-link>
+    <router-link to="/" class="text-violet-600 hover:underline text-sm">
+      Back to list
+    </router-link>
   </div>
 </template>

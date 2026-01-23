@@ -17,3 +17,21 @@ Goal
 1. The input component should be usable as-is in other parts of the project.
 2. You can modify this project as you see fit to match a “production-ready” state. (optional)
 3. You can use any library/component that you deem necessary and would use in a real application. (optional)
+
+### Changelog:
+
+Input now is separated component Numericinput.vue :used in editing person and settings.
+
+Input only accepts digits; non-numeric input is ignored.
+
+Local and real value now separated, that permitted usshow 3 digits separeted number (ex. “1442” → “1 442”) and save the real one.
+
+Input element width now adapted to the size of the value in it.
+
+UI elements updated to match the design, incl. fonts, colors, and images.
+
+Minor style tweaks applied beyond the Figma file for personal preference.
+
+Reactive store now changed by pinia.
+
+I have try build itm and a It was OK.

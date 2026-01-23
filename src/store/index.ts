@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 
 export interface Person {
   id: number
@@ -17,5 +17,5 @@ export const store = reactive<AppState>({
     { id: 2, name: 'Bob', ageInHours: 350400 },
     { id: 3, name: 'Charlie', ageInHours: 219000 },
   ],
-  minimumAgeInMonths: 0,
+  minimumAgeInMonths: 0
 })
