@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import NumericInput from './NumericInput.vue';
+import NumericInput from '@/components/NumericInput.vue';
 
 const props = defineProps<{
   name: string

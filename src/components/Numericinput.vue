@@ -48,12 +48,20 @@ function parseToDigit(value: string): number{
 }
 
 function onInput(event: Event) {
-  const raw = (event.target as HTMLInputElement).value
-  const numeric = parseToDigit(raw)
+    const raw = (event.target as HTMLInputElement).value
+    const numeric = parseToDigit(raw)
 
-  displayValue.value = format(numeric)
-  emit('update:modelValue', numeric)
+    displayValue.value = format(numeric)
+    console.log(numeric, displayValue.value)
+    emit('update:modelValue', numeric)
 }
+
+function onBeforeInput(e: InputEvent) {
+    if (e.inputType === 'insertText' && /\D/.test(e.data ?? '')) {
+        e.preventDefault() //abort input if not a digit
+    }
+}
+
 
 </script>
 <template>
@@ -61,6 +69,7 @@ function onInput(event: Event) {
     :id="inputId"
     type="text"
     :value="displayValue"
+    @beforeinput="onBeforeInput"
     @input="onInput"
     :class="[
       'border border-gray-300 rounded px-2 py-1 text-lg outline-none',
