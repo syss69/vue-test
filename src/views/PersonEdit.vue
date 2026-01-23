@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-// import { store } from '@/store'
-import { usePeopleStore } from '@/store/people'
+import { usePeopleStore, type Person } from '@/store/people'
 
 import AgeInput from '@/components/AgeInput.vue'
 import PageHeader from '@/components/PageHeader.vue'
@@ -10,7 +9,7 @@ import PageHeader from '@/components/PageHeader.vue'
 const store = usePeopleStore()
 const route = useRoute()
 
-const person = computed(() => {
+const person = computed<Person | undefined>(() => {
     const userId = Number(route.params.id)
     return store.getUserById(userId)
 })

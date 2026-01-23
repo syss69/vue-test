@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed} from 'vue';
 import NumericInput from '@/components/NumericInput.vue';
 
 const props = defineProps<{
@@ -10,23 +10,21 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: number): void
+    (e: 'update:modelValue', value: number): void
 }>()
 
-const error = ref<string | null>(null)
+const minHours = computed(() => props.minAge * 720)
 
-const valueProxy = computed({
-    get: () => props.modelValue,
-    set: (val: number) => {
-        const minHours = props.minAge * 720
-        if (val < minHours){
-            error.value = 'The entered age is bellow the minimum'
-            return
-        }
-        error.value =null
-        emit('update:modelValue', val)
+const error = computed(() => {
+    if (props.modelValue < minHours.value) {
+      return 'The entered age is below the minimum'
     }
+    return null
 })
+
+function updateValue(value: number) {
+    emit('update:modelValue', value)
+}
 </script>
 
 <template>
@@ -40,7 +38,11 @@ const valueProxy = computed({
     </label>
 
     <div class="flex items-center gap-2">
-      <NumericInput v-model="valueProxy" :inputId="inputId"/>
+      <NumericInput
+        :model-value="modelValue"
+        @update:model-value="updateValue"
+        :input-id="inputId"
+      />
       <span class="text-indigo-900">hours old</span>
     </div>
     <p v-if="error" class="text-red-500 text-sm mt-1">
