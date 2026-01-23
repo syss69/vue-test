@@ -33,7 +33,7 @@ const valueProxy = computed({
   <div>
     <label
       :for="inputId"
-      class="block text-sm font-bold tracking-wide text-indigo-950
+      class="block text-sm tracking-wide text-indigo-950
       group-focus-within:text-violet-700"
     >
       {{ name.toUpperCase() }} IS
