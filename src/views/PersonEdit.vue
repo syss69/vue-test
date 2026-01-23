@@ -38,7 +38,7 @@ const ageInHours = computed({
       tabindex="0" 
       class="group flex justify-center gap-3">
       <img
-        src="/img.png"
+        src="/photo.png"
         :alt="person.name"
         class="w-14 h-14 rounded-full object-cover
               group-focus-within:border-2
