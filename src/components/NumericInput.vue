@@ -30,10 +30,10 @@ const widthClass = computed(() => {
 
 /*
 so this part of the code is optional, 
-it possible to do by with using style,
+it possible to do by with using style property style, (:style="{ width: inputWidth + 'px' }")
 but I decided to keep only the tailwind, 
 increasing the width by 28 px every three characters.
-i'm blocked here cause tailwind won't accept dynamic ${width}px, so i choose array
+i'm blocked here cause tailwind won't accept dynamic w-[${width}px], so i choose array
  */
 
 //preety input utils
