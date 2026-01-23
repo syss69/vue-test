@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { store } from '@/store'
+// import { store } from '@/store'
+import { usePeopleStore } from '@/store/people'
 
-const peopleWithYears = computed(() => {
-  return store.people.map((person) => ({
-    ...person,
-    ageInYears: Math.floor(person.ageInHours / 8760),
-  }))
-})
+const store = usePeopleStore()
+
+const peopleWithYears = computed(() => store.peopleWithYears)
 </script>
 
 <template>

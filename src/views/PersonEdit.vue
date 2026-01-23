@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { store } from '@/store'
+// import { store } from '@/store'
+import { usePeopleStore } from '@/store/people'
 
 import AgeInput from '@/components/AgeInput.vue'
 import PageHeader from '@/components/PageHeader.vue'
 
+const store = usePeopleStore()
 const route = useRoute()
 
 const person = computed(() => {
-  const id = Number(route.params.id)
-  return store.people.find((p) => p.id === id)
+    const userId = Number(route.params.id)
+    return store.getUserById(userId)
 })
 
 const minAge = computed(() => {

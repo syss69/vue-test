@@ -22,6 +22,13 @@ export const usePeopleStore = defineStore('people', {
         getUserById: (state) => {
             return (id: number) =>
                 state.people.find(p => p.id === id)
+        },
+
+        peopleWithYears: (state) => {
+            return state.people.map((person) => ({
+                ...person,
+                ageInYears: Math.floor(person.ageInHours / 8760)
+            }))
         }
     },
 
