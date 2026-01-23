@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import { store } from '@/store'
 import { computed } from 'vue';
 import { usePeopleStore } from '@/store/people';
 
