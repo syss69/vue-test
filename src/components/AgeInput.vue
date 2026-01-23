@@ -33,7 +33,7 @@ const valueProxy = computed({
   <div>
     <label
       :for="inputId"
-      class="block text-sm font-bold tracking-wide text-indigo-950
+      class="block text-sm tracking-wide text-indigo-900
       group-focus-within:text-violet-700"
     >
       {{ name.toUpperCase() }} IS
@@ -41,7 +41,7 @@ const valueProxy = computed({
 
     <div class="flex items-center gap-2">
       <NumericInput v-model="valueProxy" :inputId="inputId"/>
-      <span class="text-indigo-950">hours old</span>
+      <span class="text-indigo-900">hours old</span>
     </div>
     <p v-if="error" class="text-red-500 text-sm mt-1">
       {{ error }}
