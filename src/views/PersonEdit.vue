@@ -33,7 +33,7 @@ const ageInHours = computed({
 <template>
   <div v-if="person" class="flex flex-col items-center gap-4 w-full">
     <PageHeader/>
-    <h1 class="text-xl text-indigo-950">Change {{person.name}}'s age</h1>
+    <h1 class="text-xl text-indigo-900">Change {{person.name}}'s age</h1>
     <div 
       tabindex="0" 
       class="group flex justify-center gap-3">

@@ -71,7 +71,7 @@ function onBeforeInput(e: InputEvent) {
     @beforeinput="onBeforeInput"
     @input="onInput"
     :class="[
-      'border border-gray-300 rounded px-2 py-1 text-lg outline-none',
+      'border border-gray-300 rounded px-2 py-1 text-lg outline-none text-indigo-950',
       'transition-all duration-150',
       widthClass
     ]"
