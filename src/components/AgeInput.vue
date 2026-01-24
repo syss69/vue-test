@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed} from 'vue';
+import { computed, watch, ref} from 'vue';
 import NumericInput from '@/components/NumericInput.vue';
 
 const props = defineProps<{
@@ -13,17 +13,29 @@ const emit = defineEmits<{
     (e: 'update:modelValue', value: number): void
 }>()
 
+const localValue = ref(props.modelValue)
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    localValue.value = val
+  }
+)
+
 const minHours = computed(() => props.minAge * 720)
 
 const error = computed(() => {
-    if (props.modelValue < minHours.value) {
+    if (localValue.value < minHours.value) {
       return 'The entered age is below the minimum'
     }
     return null
 })
 
 function updateValue(value: number) {
-    emit('update:modelValue', value)
+    localValue.value = value //Check if entered age is higher than min. age
+    if (value >= minHours.value) {
+      emit('update:modelValue', value) //if it is, update, if not show error
+    }
 }
 </script>
 
