@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+@theme{
+  --color-primary: oklch(0.4248 0.2605 276.56);
+  --color-primary-light: oklch(0.6341 0.1836 292.33);
+  --color-dark: oklch(0.2349 0.1061 286.91);
+}
+
+
 html {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 16px;

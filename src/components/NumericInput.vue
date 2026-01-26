@@ -94,7 +94,7 @@ function onBeforeInput(e: InputEvent) {
     @input="onInput"
     :style="widthStyle"
     :class="[
-      'border border-gray-300 rounded-md px-2 py-1 text-lg outline-none text-gray-300 group-focus-within:text-indigo-900 group-focus-within:border-violet-700',
+      'border-1 border-gray-300 rounded-md px-2 py-1 text-lg outline-none text-gray-300 group-focus-within:text-dark group-focus-within:border-2 group-focus-within:border-primary-light',
       'transition-all duration-150',
     ]"
     inputmode="numeric"
