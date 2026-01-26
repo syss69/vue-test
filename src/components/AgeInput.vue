@@ -19,7 +19,8 @@ watch(
   () => props.modelValue,
   (val) => {
     localValue.value = val
-  }
+  },
+  { immediate: true }
 )
 
 const minHours = computed(() => props.minAge * 720)
@@ -43,7 +44,7 @@ function updateValue(value: number) {
   <div class="flex flex-col justify-between">
     <label
       :for="inputId"
-      class="block text-xs tracking-wide text-dark
+      class="block text-sm tracking-wide text-dark
       group-focus-within:text-primary"
     >
       {{ name.toUpperCase() }} IS
