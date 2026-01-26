@@ -43,8 +43,8 @@ function updateValue(value: number) {
   <div>
     <label
       :for="inputId"
-      class="block text-sm tracking-wide text-indigo-900
-      group-focus-within:text-violet-700"
+      class="block text-sm tracking-wide text-dark
+      group-focus-within:text-primary"
     >
       {{ name.toUpperCase() }} IS
     </label>
