@@ -16,7 +16,8 @@ watch(
     () => props.modelValue,
     (val) => {
         displayValue.value = format(val)
-    }
+    },
+    { immediate: true }
 )
 //adaptive width
 
@@ -47,14 +48,12 @@ BTW here is style solution:
  */
 
 const baseWidth = 72
-const stepPx = 10 
+const stepPx = 10
 
 const widthStyle = computed(() => {
-  const len = displayValue.value.replace(/\s/g, '').length
-  const extra = len > 6 ? (len - 6) * stepPx : 0
-  return {
-    width: `${baseWidth + extra}px`
-  }
+    const len = displayValue.value.length
+    const extra = len > 6 ? (len - 6) * stepPx : 0
+    return { width: `${baseWidth + extra}px` }
 })
 
 
