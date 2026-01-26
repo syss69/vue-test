@@ -40,10 +40,10 @@ function updateValue(value: number) {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col justify-between">
     <label
       :for="inputId"
-      class="block text-sm tracking-wide text-dark
+      class="block text-xs tracking-wide text-dark
       group-focus-within:text-primary"
     >
       {{ name.toUpperCase() }} IS
@@ -55,7 +55,7 @@ function updateValue(value: number) {
         @update:model-value="updateValue"
         :input-id="inputId"
       />
-      <span class="text-indigo-900">hours old</span>
+      <span class="text-dark">hours old</span>
     </div>
     <p v-if="error" class="text-red-500 text-sm mt-1">
       {{ error }}

@@ -39,9 +39,9 @@ const ageInHours = computed({
       <img
         src="/photo.png"
         :alt="person.name"
-        class="w-14 h-14 rounded-full object-cover p-0.5
-              group-focus-within:border-1
-              group-focus-within:border-primary"
+        class="w-16 h-16 rounded-full object-cover p-0.5
+              group-focus-within:outline
+              group-focus-within:outline-primary"
       />
 
       <AgeInput
