@@ -19,15 +19,15 @@ const minAgeProxy = computed({
   <div class="flex flex-col gap-4 w-full">
     <PageHeader/>
     <div class="flex flex-col items-center gap-4 w-full">
-      <h1 class="text-xl text-indigo-900">Settings</h1>
+      <h1 class="text-xl text-primary">Settings</h1>
 
     <div class="group">
-      <label for="min-age-input" class="block text-sm tracking-wide text-indigo-900 group-focus-within:text-violet-700">
+      <label for="min-age-input" class="block text-sm tracking-wide text-dark group-focus-within:text-primary">
         MINIMUM AGE
       </label>
       <div class="flex items-center gap-2">
         <NumericInput inputId="min-age-input" v-model="minAgeProxy"/>
-        <span class="text-indigo-900">months</span>
+        <span class="text-dark">months</span>
       </div>
     </div>
     </div>
