@@ -20,21 +20,43 @@ watch(
 )
 //adaptive width
 
-const widths = ['w-[72px]', 'w-[100px]', 'w-[128px]', 'w-[156px]', 'w-[184px]', 'w-[212px]'] 
+//tailwind:
+// const widths = ['w-[72px]','w-[82px]', 'w-[92px]', 'w-[102px]', 'w-[112px]', 'w-[122px]', 'w-[132px]', 'w-[142px]', 'w-[152px]', 'w-[162px]'] 
 
-const widthClass = computed(() => {
-    const len = displayValue.value.replace(/\s/g, '').length
-    const step = Math.floor(len / 3)
-    return widths[Math.min(step, widths.length - 1)]
-})
+// const widthClass = computed(() => {
+//   const len = displayValue.value.replace(/\s/g, '').length
+//   //72px is enough for 6 digits after start counting
+//   const step = Math.max(0, len - 6)
+//   return widths[Math.min(step, widths.length - 1)]
+// })
+//second solution: change width every 3 digits
+// const widths = ['w-[72px]', 'w-[100px]', 'w-[128px]', 'w-[156px]', 'w-[184px]', 
+
+// const widthClass = computed(() => {
+//     const len = displayValue.value.replace(/\s/g, '').length
+//     const step = Math.floor(len / 3)
+//     return widths[Math.min(step, widths.length - 1)]
+// })
 
 /*
 so this part of the code is optional, 
-it possible to do by with using style property style, (:style="{ width: inputWidth + 'px' }")
-but I decided to keep only the tailwind, 
-increasing the width by 28 px every three characters.
-i'm blocked here cause tailwind won't accept dynamic w-[${width}px], so i choose array
+it possible to use styles if you don't need to use Tailwind exclusively.
+I'm stuck here because Tailwind doesn't accept dynamic w-[${width}px], so I'm using an array.
+uncomment and add widthClass to input component
+BTW here is style solution:
  */
+
+const baseWidth = 72
+const stepPx = 10 
+
+const widthStyle = computed(() => {
+  const len = displayValue.value.replace(/\s/g, '').length
+  const extra = len > 6 ? (len - 6) * stepPx : 0
+  return {
+    width: `${baseWidth + extra}px`
+  }
+})
+
 
 //preety input utils
 
@@ -70,10 +92,10 @@ function onBeforeInput(e: InputEvent) {
     :value="displayValue"
     @beforeinput="onBeforeInput"
     @input="onInput"
+    :style="widthStyle"
     :class="[
       'border-1 border-gray-300 rounded-md px-2 py-1 text-lg outline-none text-gray-300 group-focus-within:text-dark group-focus-within:border-2 group-focus-within:border-primary-light',
       'transition-all duration-150',
-      widthClass
     ]"
     inputmode="numeric"
   />
