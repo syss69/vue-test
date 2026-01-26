@@ -21,8 +21,8 @@ const minAgeProxy = computed({
     <div class="flex flex-col items-center gap-4 w-full">
       <h1 class="text-xl text-violet-700">Settings</h1>
 
-    <div>
-      <label for="min-age-input" class="block text-sm tracking-wide text-violet-700">
+    <div class="group">
+      <label for="min-age-input" class="block text-sm tracking-wide text-indigo-900 group-focus-within:text-violet-700">
         MINIMUM AGE
       </label>
       <div class="flex items-center gap-2">
