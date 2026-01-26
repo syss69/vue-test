@@ -52,7 +52,7 @@ const stepPx = 10
 
 const widthStyle = computed(() => {
     const len = displayValue.value.length
-    const extra = len > 6 ? (len - 6) * stepPx : 0
+    const extra = len > 5 ? (len - 5) * stepPx : 0
     return { width: `${baseWidth + extra}px` }
 })
 
