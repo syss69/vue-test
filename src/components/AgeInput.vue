@@ -41,22 +41,22 @@ function updateValue(value: number) {
 </script>
 
 <template>
-  <div class="flex flex-col justify-between">
+  <div class="flex flex-col justify-between gap-[12px] border border-red-300 ">
     <label
       :for="inputId"
-      class="block text-sm tracking-wide text-dark
+      class="block text-[16px] tracking-wide text-dark
       group-focus-within:text-primary"
     >
       {{ name.toUpperCase() }} IS
     </label>
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-[12px]">
       <NumericInput
         :model-value="modelValue"
         @update:model-value="updateValue"
         :input-id="inputId"
       />
-      <span class="text-dark">hours old</span>
+      <span class="text-dark text-[18px]">hours old</span>
     </div>
     <p v-if="error" class="text-red-500 text-sm mt-1">
       {{ error }}

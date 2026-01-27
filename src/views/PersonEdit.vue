@@ -32,14 +32,14 @@ const ageInHours = computed({
 <template>
   <div v-if="person" class="flex flex-col items-center gap-4 w-full">
     <PageHeader/>
-    <h1 class="text-xl text-primary">Change {{person.name}}'s age</h1>
+    <h1 class="text-2xl text-primary">Change {{person.name}}'s age</h1>
     <div 
       tabindex="0" 
-      class="group flex justify-center gap-3">
+      class="group flex justify-center gap-[16px]">
       <img
         src="/photo.png"
         :alt="person.name"
-        class="w-16 h-16 rounded-full object-cover p-0.5
+        class="w-[80px] h-[80px] rounded-full object-cover outline-offset-4
               group-focus-within:outline
               group-focus-within:outline-primary"
       />
